@@ -1,0 +1,77 @@
+/* ========== Card Grid ========== */
+
+.bookmark-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.grid-card {
+    min-width: 0;
+}
+
+.grid-card > * {
+    height: 100%;
+}
+
+/* ========== Card Styles ========== */
+
+.bento-card {
+    border-radius: 16px !important;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    cursor: pointer;
+}
+
+.bento-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.theme--dark .bento-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== Drag-and-Drop ========== */
+
+.sortable-drag {
+    opacity: 0.7;
+    transform: rotate(2deg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.sortable-ghost {
+    opacity: 0.3;
+    background: #e5e7eb;
+    border-radius: 8px;
+}
+
+.theme--dark .sortable-ghost {
+    background: #374151;
+}
+
+/* ========== Focus Ring ========== */
+
+.bento-card:focus-visible {
+    outline: 2px solid #0BA665;
+    outline-offset: 2px;
+}
+
+/* ========== Scrollbar Hide ========== */
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ========== Layout Fixes ========== */
+
+.v-main__wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}

@@ -1,0 +1,173 @@
+{
+  "appName": {
+    "message": "PinTab"
+  },
+  "appDesc": {
+    "message": "PinTab is an open-source new tab extension that turns your browser bookmarks into a clean and beautiful navigation homepage."
+  },
+  "appTitle": {
+    "message": "Bookmarks"
+  },
+  "setContextMenu": {
+    "message": "Close context menu"
+  },
+  "search": {
+    "message": "Search..."
+  },
+  "clear": {
+    "message": "Clear"
+  },
+  "closeSidebar": {
+    "message": "Close Sidebar"
+  },
+  "nope": {
+    "message": "There's nothing here!"
+  },
+  "searchTips": {
+    "message": "Try searching with a different keyword or explore other features!"
+  },
+  "searchResults": {
+    "message": "Search Results"
+  },
+  "errorSearch": {
+    "message": "Error clearing search results"
+  },
+  "errorSearchBookmark": {
+    "message": "Error searching bookmarks"
+  },
+  "errorLoadingBookmarks": {
+    "message": "Error loading bookmarks"
+  },
+  "set": {
+    "message": "Settings"
+  },
+  "bookmark": {
+    "message": "Bookmark"
+  },
+  "baidu": {
+    "message": "Baidu"
+  },
+  "google": {
+    "message": "Google"
+  },
+  "bing": {
+    "message": "Bing"
+  },
+  "copyUrl": {
+    "message": "Copy URL"
+  },
+  "editBookmark": {
+    "message": "Edit Bookmark"
+  },
+  "del": {
+    "message": "Delete"
+  },
+  "infoEdit": {
+    "message": "Info Edit"
+  },
+  "IconDescribe": {
+    "message": "The homepage icon will be automatically fetched after entering the website link. Some websites or foreign sites may not succeed."
+  },
+  "websiteLink": {
+    "message": "Website Link"
+  },
+  "websiteLinkPlaceholder": {
+    "message": "Please enter the website link"
+  },
+  "websiteLinkError": {
+    "message": "Website link cannot be empty"
+  },
+  "websiteName": {
+    "message": "Website Name"
+  },
+  "websiteNameError": {
+    "message": "Website name cannot be empty"
+  },
+  "websiteNamePlaceholder": {
+    "message": "Please enter the website name"
+  },
+  "iconEdit": {
+    "message": "Icon Edit"
+  },
+  "iconChoose": {
+    "message": "Icon Choose"
+  },
+  "default": {
+    "message": "Default"
+  },
+  "official": {
+    "message": "Official"
+  },
+  "upload": {
+    "message": "Upload"
+  },
+  "uploadImage": {
+    "message": "Upload Image"
+  },
+  "save": {
+    "message": "Save"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "setOpenNewTab": {
+    "message": "Open a new tab"
+  },
+  "bookmarkAdd": {
+    "message": "Add Bookmark"
+  },
+  "newFolder": {
+    "message": "New Folder"
+  },
+  "folderNameNotEmpty": {
+    "message": "Folder name cannot be empty"
+  },
+  "newFolderName": {
+    "message": "New Folder Name"
+  },
+  "CacheIcon": {
+    "message": "Auto Cache Icon"
+  },
+  "all_bookmarks": {
+    "message": "All Bookmarks"
+  },
+  "current_bookmark": {
+    "message": "Current Bookmark"
+  },
+  "chatgpt": {
+    "message": "ChatGPT"
+  },
+  "perplexity": {
+    "message": "Perplexity"
+  },
+  "secret_tower": {
+    "message": "Secret Tower"
+  },
+  "web_search": {
+    "message": "Web Search"
+  },
+  "ai_search": {
+    "message": "AI Search"
+  },
+  "theme": {
+    "message": "Theme"
+  },
+  "theme_light": {
+    "message": "Light"
+  },
+  "theme_dark": {
+    "message": "Dark"
+  },
+  "theme_ocean": {
+    "message": "Ocean"
+  },
+  "theme_forest": {
+    "message": "Forest"
+  },
+  "theme_sunset": {
+    "message": "Sunset"
+  },
+  "theme_lavender": {
+    "message": "Lavender"
+  }
+}

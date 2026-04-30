@@ -1,0 +1,173 @@
+{
+  "appName": {
+    "message": "PinTab"
+  },
+  "appDesc": {
+    "message": "PinTab 是一个将浏览器书签转换为美观新标签页导航页的开源插件。"
+  },
+  "appTitle": {
+    "message": "书签"
+  },
+  "setContextMenu": {
+    "message": "关闭右键菜单"
+  },
+  "search": {
+    "message": "搜索..."
+  },
+  "clear": {
+    "message": "清除"
+  },
+  "closeSidebar": {
+    "message": "关闭侧边栏"
+  },
+  "nope": {
+    "message": "这里什么都没有!"
+  },
+  "searchTips": {
+    "message": "可以尝试换一个关键词搜索，或者试试其他功能吧!"
+  },
+  "searchResults": {
+    "message": "搜索结果"
+  },
+  "errorSearch": {
+    "message": "清除搜索结果时出错"
+  },
+  "errorSearchBookmark": {
+    "message": "搜索书签时出错"
+  },
+  "errorLoadingBookmarks": {
+    "message": "加载书签时出错"
+  },
+  "set": {
+    "message": "设置"
+  },
+  "bookmark": {
+    "message": "书签"
+  },
+  "baidu": {
+    "message": "百度"
+  },
+  "google": {
+    "message": "谷歌"
+  },
+  "bing": {
+    "message": "必应"
+  },
+  "copyUrl": {
+    "message": "复制地址"
+  },
+  "editBookmark": {
+    "message": "编辑书签"
+  },
+  "del": {
+    "message": "删除"
+  },
+  "infoEdit": {
+    "message": "信息编辑"
+  },
+  "IconDescribe": {
+    "message": "输入网站链接后会自动获取首页图标，个别网站或国外网站可能会获取不成功"
+  },
+  "websiteLink": {
+    "message": "网站链接"
+  },
+  "websiteLinkPlaceholder": {
+    "message": "请输入网站链接"
+  },
+  "websiteLinkError": {
+    "message": "网站链接不能为空"
+  },
+  "websiteName": {
+    "message": "网站名称"
+  },
+  "websiteNameError": {
+    "message": "网站名称不能为空"
+  },
+  "websiteNamePlaceholder": {
+    "message": "请输入网站名称"
+  },
+  "iconEdit": {
+    "message": "图标编辑"
+  },
+  "iconChoose": {
+    "message": "图标选择"
+  },
+  "default": {
+    "message": "默认"
+  },
+  "official": {
+    "message": "官方"
+  },
+  "upload": {
+    "message": "上传"
+  },
+  "uploadImage": {
+    "message": "上传图片"
+  },
+  "save": {
+    "message": "保存"
+  },
+  "cancel": {
+    "message": "取消"
+  },
+  "setOpenNewTab": {
+    "message": "打开新标签页"
+  },
+  "bookmarkAdd": {
+    "message": "添加书签"
+  },
+  "newFolder": {
+    "message": "新建文件夹"
+  },
+  "folderNameNotEmpty": {
+    "message": "文件夹名称不能为空"
+  },
+  "newFolderName": {
+    "message": "新文件夹名称"
+  },
+  "CacheIcon": {
+    "message": "自动缓存图标"
+  },
+  "all_bookmarks": {
+    "message": "所有书签"
+  },
+  "current_bookmark": {
+    "message": "当前书签"
+  },
+  "chatgpt": {
+    "message": "ChatGPT"
+  },
+  "perplexity": {
+    "message": "Perplexity"
+  },
+  "secret_tower": {
+    "message": "秘塔"
+  },
+  "web_search": {
+    "message": "Web 搜索"
+  },
+  "ai_search": {
+    "message": "AI 搜索"
+  },
+  "theme": {
+    "message": "主题"
+  },
+  "theme_light": {
+    "message": "浅色"
+  },
+  "theme_dark": {
+    "message": "深色"
+  },
+  "theme_ocean": {
+    "message": "海洋"
+  },
+  "theme_forest": {
+    "message": "森林"
+  },
+  "theme_sunset": {
+    "message": "日落"
+  },
+  "theme_lavender": {
+    "message": "薰衣草"
+  }
+}
