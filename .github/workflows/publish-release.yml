@@ -1,6 +1,3 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
 name: 谷歌插件发布
 
 on:
@@ -13,23 +10,50 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
-      - run: npm run zip
-      - run: ls -al
-      - run: ls -al ./.output
+          cache: 'npm'
 
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 构建 ZIP 包
+        run: npm run zip
+
+      - name: 列出构建产物
+        run: |
+          echo "=== Output directory ==="
+          ls -lah ./.output/
+          echo "=== Total files ==="
+          find ./.output -type f
+
+      - name: 获取版本号
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Tag version: ${VERSION}"
 
       - name: 创建 Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: ./.output/*.zip
-          fail_on_unmatched_files: true
+          fail_on_unmatched_files: false
           body_path: './release.md'
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 发布成功
+        if: success()
+        run: echo "✅ Release ${{ steps.version.outputs.version }} 发布成功"
