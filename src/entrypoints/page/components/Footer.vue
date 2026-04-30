@@ -42,13 +42,13 @@ const currentYear = ref(new Date().getFullYear());
                             </clipPath>
                         </defs>
                     </svg>
-                    <span class="appName_i18n">Pintree</span>
+                    <span class="appName_i18n">PintreeNewTab</span>
                 </a>
             </v-col>
             <v-col class="d-flex justify-end">
                 <a
                     class="text-grey"
-                    href="https://github.com/tangxiaoqi-tangxiao/PintreeNewTab"
+                    href="https://github.com/lalavender/PinTab.git"
                     target="_blank"
                 >
                     <v-icon icon="mdi-github" size="24" />
