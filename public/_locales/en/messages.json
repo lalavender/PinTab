@@ -169,5 +169,8 @@
   },
   "theme_lavender": {
     "message": "Lavender"
+  },
+  "delFolder": {
+    "message": "Delete Folder"
   }
 }

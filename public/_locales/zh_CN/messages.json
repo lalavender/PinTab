@@ -169,5 +169,8 @@
   },
   "theme_lavender": {
     "message": "薰衣草"
+  },
+  "delFolder": {
+    "message": "删除文件夹"
   }
 }

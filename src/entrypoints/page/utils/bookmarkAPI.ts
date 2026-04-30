@@ -23,11 +23,15 @@ function bookmarkToStructuredData(
 }
 
 export function getTree(): Promise<BookmarkNode[]> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     chrome.bookmarks.getTree((bookmarks) => {
-      const structured =
-        bookmarks[0].children?.map(bookmarkToStructuredData) ?? [];
-      resolve(structured);
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        const structured =
+          bookmarks[0].children?.map(bookmarkToStructuredData) ?? [];
+        resolve(structured);
+      }
     });
   });
 }
@@ -79,6 +83,18 @@ export function update(
 export function remove(id: string): Promise<void> {
   return new Promise((resolve, reject) => {
     chrome.bookmarks.remove(id, () => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
+export function removeTree(id: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    chrome.bookmarks.removeTree(id, () => {
       if (chrome.runtime.lastError) {
         reject(new Error(chrome.runtime.lastError.message));
       } else {

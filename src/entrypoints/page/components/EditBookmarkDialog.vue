@@ -93,7 +93,17 @@ function onImageUpload(event: Event): void {
   input.value = ''
 }
 
+function normalizeUrl(raw: string): string {
+  const trimmed = raw.trim()
+  if (!trimmed) return ''
+  if (/^https?:\/\//i.test(trimmed)) return trimmed
+  return 'https://' + trimmed
+}
+
 async function save(): Promise<void> {
+  const normalizedUrl = normalizeUrl(websiteLink.value)
+  websiteLink.value = normalizedUrl
+
   linkError.value = !websiteLink.value
   linkError2.value = !!websiteLink.value && !isValidUrl(websiteLink.value)
   nameError.value = !websiteName.value
@@ -118,15 +128,17 @@ async function save(): Promise<void> {
       bookmarkStore.activeFolderId
     )
     if (node) {
-      await cacheIcon(node.id)
+      try { await cacheIcon(node.id) } catch (_) { /* icon cache is non-critical */ }
       uiStore.closeEditBookmark()
+    } else {
+      uiStore.showToast('Failed to create bookmark')
     }
   } else if (id) {
     await bookmarkStore.updateBookmark(id, {
       title: websiteName.value,
       url: websiteLink.value,
     })
-    await cacheIcon(id)
+    try { await cacheIcon(id) } catch (_) { /* icon cache is non-critical */ }
     uiStore.closeEditBookmark()
   }
 }

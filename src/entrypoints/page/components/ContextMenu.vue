@@ -11,14 +11,17 @@ const bookmarkStore = useBookmarkStore()
 const uiStore = useUIStore()
 
 const showBookmark = ref(false)
+const showFolder = ref(false)
 const showBlank = ref(false)
 const posX = ref(0)
 const posY = ref(0)
 const selectedBookmark = ref<BookmarkNode | null>(null)
+const selectedFolder = ref<BookmarkNode | null>(null)
 
 function handleContextMenu(event: MouseEvent): void {
   const target = event.target as HTMLElement
   const bookmarkEl = target.closest('.bookmark-link') as HTMLElement | null
+  const folderEl = target.closest('.folder-card-wrap') as HTMLElement | null
 
   if (bookmarkEl) {
     if (uiStore.contextMenuDisabled) return
@@ -30,9 +33,23 @@ function handleContextMenu(event: MouseEvent): void {
       selectedBookmark.value = node
       setPos(event)
       showBookmark.value = true
+      showFolder.value = false
       showBlank.value = false
     }
-  } else if (target.closest('#main') && !target.closest('.bookmark-link')) {
+  } else if (folderEl) {
+    if (uiStore.contextMenuDisabled) return
+    event.preventDefault()
+    const id = folderEl.dataset.id
+    if (!id) return
+    const node = findInTree(bookmarkStore.firstLayer, (n) => n.id === id)
+    if (node) {
+      selectedFolder.value = node
+      setPos(event)
+      showFolder.value = true
+      showBookmark.value = false
+      showBlank.value = false
+    }
+  } else if (target.closest('#main') && !target.closest('.bookmark-link') && !target.closest('.folder-card-wrap')) {
     if (!bookmarkStore.activeFolderId) return
     event.preventDefault()
     setPos(event)
@@ -65,6 +82,7 @@ function setPos(event: MouseEvent): void {
 
 function closeAll(): void {
   showBookmark.value = false
+  showFolder.value = false
   showBlank.value = false
 }
 
@@ -92,6 +110,12 @@ function handleEdit(): void {
   if (!selectedBookmark.value) return
   const bm = selectedBookmark.value
   uiStore.openEditBookmark(bm.id, bm.url || '', bm.title)
+  closeAll()
+}
+
+async function handleDeleteFolder(): Promise<void> {
+  if (!selectedFolder.value) return
+  await bookmarkStore.deleteFolder(selectedFolder.value.id)
   closeAll()
 }
 
@@ -141,6 +165,20 @@ onUnmounted(() => {
           </template>
         </v-list-item>
         <v-list-item :title="t('del')" @click="handleDelete">
+          <template #prepend>
+            <v-icon icon="mdi-delete" size="small" />
+          </template>
+        </v-list-item>
+      </v-list>
+    </div>
+
+    <div
+      v-if="showFolder"
+      class="context-menu"
+      :style="{ top: posY + 'px', left: posX + 'px' }"
+    >
+      <v-list density="compact" class="pa-0" width="224">
+        <v-list-item :title="t('delFolder')" @click="handleDeleteFolder">
           <template #prepend>
             <v-icon icon="mdi-delete" size="small" />
           </template>

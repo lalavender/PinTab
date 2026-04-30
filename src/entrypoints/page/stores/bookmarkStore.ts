@@ -112,6 +112,26 @@ export const useBookmarkStore = defineStore('bookmarks', () => {
     }
   }
 
+  async function deleteFolder(id: string): Promise<void> {
+    try {
+      await bookmarkAPI.removeTree(id)
+      const deletedFolder = findInTree(firstLayer.value, (node) => node.id === id)
+      const parentId = deletedFolder?.parentId
+      deleteFromTree(firstLayer.value, (node) => node.id === id)
+      if (activeFolderId.value === id) {
+        if (parentId) {
+          setActiveFolder(parentId)
+        } else if (firstLayer.value.length > 0) {
+          setActiveFolder(firstLayer.value[0].id)
+        } else {
+          activeFolderId.value = null
+        }
+      }
+    } catch (e) {
+      console.error('Failed to delete folder:', e)
+    }
+  }
+
   async function createFolderItem(title: string, parentId: string): Promise<BookmarkNode | null> {
     try {
       const result = await bookmarkAPI.create({ parentId, title })
@@ -180,6 +200,7 @@ export const useBookmarkStore = defineStore('bookmarks', () => {
     createBookmark,
     updateBookmark,
     deleteBookmark,
+    deleteFolder,
     createFolderItem,
     clearSearch,
     delIconsCache,
