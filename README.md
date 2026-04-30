@@ -1,7 +1,7 @@
 
 # PinTab
 
-[中文](README.md) | [English](README_en.md)
+[中文](README.md)
 
 PinTab 是一个开源的新标签页浏览器插件，基于 [PintreeNewTab](https://github.com/tangxiaoqi-tangxiao/PintreeNewTab.git) 构建。
 
