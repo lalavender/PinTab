@@ -5,7 +5,7 @@ import { useI18n } from '../composables/useI18n'
 import { useBookmarkDrag } from '../composables/useBookmarkDrag'
 import BookmarkCard from './BookmarkCard.vue'
 import FolderCard from './FolderCard.vue'
-const empty_svg = '/images/empty.svg'
+const empty_svg = '/empty.svg'
 
 const emit = defineEmits<{
   bookmarkClick: [url: string]

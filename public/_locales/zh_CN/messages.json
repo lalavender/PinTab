@@ -172,5 +172,8 @@
   },
   "delFolder": {
     "message": "删除文件夹"
+  },
+  "renameFolder": {
+    "message": "重命名文件夹"
   }
 }

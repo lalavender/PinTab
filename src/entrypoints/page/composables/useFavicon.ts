@@ -3,8 +3,8 @@ import db from '../utils/indexedDB'
 import { IconsStr } from '../config'
 import { getFaviconURL } from '../utils/faviconUtils'
 
-const empty_svg = '/images/empty.svg'
-const default_svg = '/images/default-icon.svg'
+const empty_svg = '/empty.svg'
+const default_svg = '/default-icon.svg'
 
 export function useFavicon() {
   const iconSrc = ref(empty_svg)

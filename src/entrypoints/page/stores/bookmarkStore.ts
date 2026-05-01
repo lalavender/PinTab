@@ -132,6 +132,21 @@ export const useBookmarkStore = defineStore('bookmarks', () => {
     }
   }
 
+  async function renameFolder(id: string, title: string): Promise<void> {
+    try {
+      await bookmarkAPI.update(id, { title })
+      findInTree(firstLayer.value, (node) => {
+        if (node.id === id) {
+          node.title = title
+          return true
+        }
+        return false
+      })
+    } catch (e) {
+      console.error('Failed to rename folder:', e)
+    }
+  }
+
   async function createFolderItem(title: string, parentId: string): Promise<BookmarkNode | null> {
     try {
       const result = await bookmarkAPI.create({ parentId, title })
@@ -202,6 +217,7 @@ export const useBookmarkStore = defineStore('bookmarks', () => {
     deleteBookmark,
     deleteFolder,
     createFolderItem,
+    renameFolder,
     clearSearch,
     delIconsCache,
   }

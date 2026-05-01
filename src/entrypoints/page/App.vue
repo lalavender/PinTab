@@ -17,6 +17,7 @@ import Footer from "./components/Footer.vue";
 import SettingsDialog from "./components/SettingsDialog.vue";
 import EditBookmarkDialog from "./components/EditBookmarkDialog.vue";
 import NewFolderDialog from "./components/NewFolderDialog.vue";
+import RenameFolderDialog from "./components/RenameFolderDialog.vue";
 import ContextMenu from "./components/ContextMenu.vue";
 
 const { t } = useI18n();
@@ -122,10 +123,10 @@ function handleBookmarkClick(url: string) {
                             @click="uiStore.toggleSidebar()"
                         />
                         <img
-                            alt="Pintree"
+                            alt="PinTab"
                             class="pl-2 d-lg-none"
                             height="32"
-                            src="/images/logo.svg"
+                            src="/logo.svg"
                         />
                         <span
                             class="d-lg-none font-weight-black text-h5 appName_i18n"
@@ -226,6 +227,7 @@ function handleBookmarkClick(url: string) {
         <SettingsDialog v-model="settingsDialog" />
         <EditBookmarkDialog />
         <NewFolderDialog />
+        <RenameFolderDialog />
         <ContextMenu />
     </v-app>
 </template>

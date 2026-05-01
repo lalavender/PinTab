@@ -23,6 +23,8 @@ export const useUIStore = defineStore('ui', () => {
   const editBookmarkDialog = ref(false)
   const editBookmarkData = ref<{ id: string; url: string; title: string } | null>(null)
   const newFolderDialog = ref(false)
+  const renameFolderDialog = ref(false)
+  const renameFolderData = ref<{ id: string; title: string } | null>(null)
 
   let toastTimer: ReturnType<typeof setTimeout> | null = null
 
@@ -102,6 +104,16 @@ export const useUIStore = defineStore('ui', () => {
     newFolderDialog.value = false
   }
 
+  function openRenameFolder(id: string, title: string): void {
+    renameFolderData.value = { id, title }
+    renameFolderDialog.value = true
+  }
+
+  function closeRenameFolder(): void {
+    renameFolderDialog.value = false
+    renameFolderData.value = null
+  }
+
   return {
     theme,
     sidebarVisible,
@@ -126,5 +138,9 @@ export const useUIStore = defineStore('ui', () => {
     closeEditBookmark,
     openNewFolder,
     closeNewFolder,
+    renameFolderDialog,
+    renameFolderData,
+    openRenameFolder,
+    closeRenameFolder,
   }
 })

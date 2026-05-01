@@ -1,4 +1,4 @@
-const default_svg = "/images/default-icon.svg";
+const default_svg = "/default-icon.svg";
 
 const _browserRelatedHeaders: Record<string, string> = {
   "sec-ch-ua":

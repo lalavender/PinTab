@@ -113,6 +113,12 @@ function handleEdit(): void {
   closeAll()
 }
 
+function handleRenameFolder(): void {
+  if (!selectedFolder.value) return
+  uiStore.openRenameFolder(selectedFolder.value.id, selectedFolder.value.title)
+  closeAll()
+}
+
 async function handleDeleteFolder(): Promise<void> {
   if (!selectedFolder.value) return
   await bookmarkStore.deleteFolder(selectedFolder.value.id)
@@ -178,6 +184,11 @@ onUnmounted(() => {
       :style="{ top: posY + 'px', left: posX + 'px' }"
     >
       <v-list density="compact" class="pa-0" width="224">
+        <v-list-item :title="t('renameFolder')" @click="handleRenameFolder">
+          <template #prepend>
+            <v-icon icon="mdi-pencil" size="small" />
+          </template>
+        </v-list-item>
         <v-list-item :title="t('delFolder')" @click="handleDeleteFolder">
           <template #prepend>
             <v-icon icon="mdi-delete" size="small" />
