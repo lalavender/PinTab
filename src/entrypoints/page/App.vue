@@ -42,7 +42,7 @@ function selectTheme(name: ThemeName): void {
 watch(
     () => uiStore.theme,
     (newTheme) => {
-        vuetifyTheme.global.name.value = newTheme;
+        vuetifyTheme.change(newTheme);
     },
     { immediate: true },
 );

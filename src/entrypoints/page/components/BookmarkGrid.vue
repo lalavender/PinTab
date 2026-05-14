@@ -5,7 +5,6 @@ import { useI18n } from '../composables/useI18n'
 import { useBookmarkDrag } from '../composables/useBookmarkDrag'
 import BookmarkCard from './BookmarkCard.vue'
 import FolderCard from './FolderCard.vue'
-const empty_svg = '/empty.svg'
 
 const emit = defineEmits<{
   bookmarkClick: [url: string]
@@ -36,8 +35,8 @@ onUnmounted(() => {
 
 <template>
   <div v-if="contents.folders.length === 0 && contents.links.length === 0" class="d-flex flex-column justify-center align-center h-100 text-grey">
-    <img :src="empty_svg" class="w-20 h-20 mb-4" alt="empty">
-    <h1 class="text-xl font-weight-semibold text-grey mt-6">{{ t('noResults') }}</h1>
+    <v-icon icon="mdi-inbox-outline" size="80" class="mb-4" color="rgba(128,128,128,0.3)" />
+    <h1 class="text-xl font-weight-semibold text-grey mt-6">{{ t('nope') }}</h1>
     <p class="text-grey mt-2">{{ t('searchTips') }}</p>
   </div>
 

@@ -20,7 +20,7 @@ const tabs: { key: TabType; label: string; icon: string }[] = [
 const collections: Record<string, string[]> = {
   bookmarks: ['All_bookmarks', 'Current_bookmark'],
   'web-search': ['Google', 'Baidu', 'Bing'],
-  'ai-search': ['ChatGPT', 'Perplexity', 'Secret_Tower'],
+  'ai-search': ['DeepSeek', 'ChatGPT', 'Secret_Tower'],
 }
 
 const currentCollections = computed(() => collections[searchStore.activeTab] || [])
@@ -101,8 +101,8 @@ function executeWebSearch(query: string, tab: TabType, currentTab: string): void
     }
   } else if (tab === 'ai-search') {
     switch (currentTab) {
+      case 'DeepSeek': url = `https://chat.deepseek.com/chat?q=${encoded}`; break
       case 'ChatGPT': url = `https://chatgpt.com/?q=${encoded}`; break
-      case 'Perplexity': url = `https://www.perplexity.ai/search/new?q=${encoded}&ie=utf-8`; break
       case 'Secret_Tower': url = `https://metaso.cn?q=${encoded}`; break
     }
   }
@@ -114,69 +114,47 @@ function executeWebSearch(query: string, tab: TabType, currentTab: string): void
 <template>
   <div class="search-wrapper">
     <!-- Tab Segment Control -->
-    <div class="d-flex justify-center mb-6">
+    <div class="d-flex justify-center mb-5">
       <div class="tab-segment">
-        <v-btn
+        <button
           v-for="tab in tabs"
           :key="tab.key"
-          :color="searchStore.activeTab === tab.key ? '#0BA665' : undefined"
-          :variant="searchStore.activeTab === tab.key ? 'flat' : 'text'"
-          :prepend-icon="searchStore.activeTab === tab.key ? tab.icon : undefined"
-          rounded="pill"
-          size="default"
-          class="text-none tab-btn"
+          :class="['tab-btn', { 'tab-btn--active': searchStore.activeTab === tab.key }]"
           @click="selectTab(tab.key)"
         >
-          {{ t(tab.label) }}
-        </v-btn>
+          <v-icon :icon="tab.icon" size="18" class="tab-btn__icon" />
+          <span>{{ t(tab.label) }}</span>
+        </button>
       </div>
     </div>
 
     <!-- Search Input -->
     <div class="search-input-wrap mx-auto">
-      <v-text-field
-        v-model="searchQuery"
-        :placeholder="t('search')"
-        variant="outlined"
-        density="comfortable"
-        hide-details
-        rounded="pill"
-        bg-color="surface"
-        class="search-field"
-        @keydown.enter="handleSearch"
-      >
-        <template #prepend-inner>
-          <v-icon icon="mdi-magnify" color="grey" class="ml-1" />
-        </template>
-        <template #append-inner>
-          <v-btn
-            icon="mdi-arrow-right"
-            color="#0BA665"
-            size="36"
-            variant="flat"
-            rounded="circle"
-            class="mr-1"
-            @click="handleSearch"
-          />
-        </template>
-      </v-text-field>
+      <div class="search-field-container">
+        <v-icon icon="mdi-magnify" size="22" class="search-icon" color="grey" />
+        <input
+          v-model="searchQuery"
+          :placeholder="t('search')"
+          class="search-input"
+          @keydown.enter="handleSearch"
+        />
+        <button class="search-submit-btn" @click="handleSearch">
+          <v-icon icon="mdi-arrow-right" size="20" />
+        </button>
+      </div>
     </div>
 
     <!-- Collection Chips -->
     <div class="d-flex justify-center mt-4">
       <div class="chip-segment">
-        <v-chip
+        <button
           v-for="name in currentCollections"
           :key="name"
-          :color="searchStore.currentCollection === name ? '#0BA665' : undefined"
-          :variant="searchStore.currentCollection === name ? 'flat' : 'text'"
-          size="small"
-          rounded="pill"
-          class="collection-chip"
+          :class="['chip-btn', { 'chip-btn--active': searchStore.currentCollection === name }]"
           @click="selectCollection(name)"
         >
           {{ t(name.toLowerCase()) || name }}
-        </v-chip>
+        </button>
       </div>
     </div>
   </div>
@@ -188,53 +166,157 @@ function executeWebSearch(query: string, tab: TabType, currentTab: string): void
 }
 
 .search-input-wrap {
-  max-width: 680px;
+  max-width: 640px;
 }
 
-.search-field :deep(.v-field__outline) {
-  --v-field-border-opacity: 0.12;
-}
+/* ========== Tab Segment ========== */
 
-/* Tab segment control */
 .tab-segment {
   display: inline-flex;
-  gap: 4px;
-  padding: 4px;
-  border-radius: 100px;
-  background: rgba(128, 128, 128, 0.06);
+  gap: 2px;
+  padding: 3px;
+  border-radius: 12px;
+  background: rgba(128, 128, 128, 0.07);
 }
 
 .tab-btn {
-  min-width: 100px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: rgba(128, 128, 128, 0.7);
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0;
-  border-radius: 100px;
+  cursor: pointer;
+  transition: all 250ms ease;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: rgba(128, 128, 128, 0.9);
+  background: rgba(128, 128, 128, 0.05);
+}
+
+.tab-btn--active {
+  background: #0BA665;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(11, 166, 101, 0.3);
+}
+
+.tab-btn--active:hover {
+  background: #0a935a;
+  color: #fff;
+}
+
+.tab-btn__icon {
+  transition: transform 200ms ease;
+}
+
+.tab-btn--active .tab-btn__icon {
+  transform: scale(1.05);
+}
+
+/* ========== Search Field ========== */
+
+.search-field-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 6px 0 18px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(128, 128, 128, 0.15);
+  background: var(--v-theme-surface);
+  transition: all 250ms ease;
+}
+
+.search-field-container:focus-within {
+  border-color: #0BA665;
+  box-shadow: 0 0 0 3px rgba(11, 166, 101, 0.12);
+}
+
+.search-icon {
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.search-input {
+  flex: 1;
+  height: 52px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: inherit;
+  min-width: 0;
+}
+
+.search-input::placeholder {
+  color: rgba(128, 128, 128, 0.4);
+}
+
+.search-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 11px;
+  background: #0BA665;
+  color: #fff;
+  cursor: pointer;
   transition: all 200ms ease;
+  flex-shrink: 0;
 }
 
-.tab-btn:hover:not(.v-btn--variant-flat) {
-  background: rgba(128, 128, 128, 0.08);
+.search-submit-btn:hover {
+  background: #0a935a;
+  transform: scale(1.05);
 }
 
-/* Chip segment control */
+.search-submit-btn:active {
+  transform: scale(0.95);
+}
+
+/* ========== Chip Segment ========== */
+
 .chip-segment {
   display: inline-flex;
-  gap: 4px;
-  padding: 4px;
-  border-radius: 100px;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 10px;
+  background: rgba(128, 128, 128, 0.05);
+}
+
+.chip-btn {
+  padding: 4px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(128, 128, 128, 0.65);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 200ms ease;
+  white-space: nowrap;
+}
+
+.chip-btn:hover {
+  color: rgba(128, 128, 128, 0.9);
   background: rgba(128, 128, 128, 0.06);
 }
 
-/* Collection chips */
-.collection-chip {
-  font-weight: 500;
-  letter-spacing: 0;
-  cursor: pointer;
-  min-width: 80px;
-  transition: all 200ms ease;
+.chip-btn--active {
+  background: #0BA665;
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(11, 166, 101, 0.25);
 }
 
-.collection-chip:hover:not(.v-chip--variant-flat) {
-  background: rgba(128, 128, 128, 0.08);
+.chip-btn--active:hover {
+  background: #0a935a;
+  color: #fff;
 }
 </style>

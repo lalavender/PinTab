@@ -134,3 +134,4 @@ dist
 
 # 排除IDEA
 .idea
+.claude

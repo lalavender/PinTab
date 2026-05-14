@@ -137,11 +137,11 @@
   "chatgpt": {
     "message": "ChatGPT"
   },
-  "perplexity": {
-    "message": "Perplexity"
+  "deepseek": {
+    "message": "DeepSeek"
   },
   "secret_tower": {
-    "message": "Secret Tower"
+    "message": "Metaso"
   },
   "web_search": {
     "message": "Web Search"
