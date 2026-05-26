@@ -158,17 +158,17 @@
   "theme_dark": {
     "message": "深色"
   },
-  "theme_ocean": {
-    "message": "海洋"
+  "theme_sakura": {
+    "message": "樱花"
   },
-  "theme_forest": {
-    "message": "森林"
+  "theme_midnight": {
+    "message": "午夜"
   },
-  "theme_sunset": {
-    "message": "日落"
+  "theme_amber": {
+    "message": "琥珀"
   },
-  "theme_lavender": {
-    "message": "薰衣草"
+  "theme_nebula": {
+    "message": "星云"
   },
   "delFolder": {
     "message": "删除文件夹"

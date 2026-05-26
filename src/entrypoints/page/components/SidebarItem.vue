@@ -45,7 +45,7 @@ function handleClick(): void {
         >
             <v-icon
                 :icon="isActive ? 'mdi-folder' : 'mdi-folder-outline'"
-                :color="isActive ? 'green' : undefined"
+                :color="isActive ? 'primary' : undefined"
                 size="18"
                 class="sidebar-item__icon"
             />
@@ -96,12 +96,12 @@ function handleClick(): void {
 }
 
 .sidebar-item:focus-visible {
-    outline: 2px solid #0ba665;
+    outline: 2px solid rgb(var(--v-theme-primary));
     outline-offset: 0px;
 }
 
 .sidebar-item--active {
-    background-color: rgba(11, 166, 101, 0.1);
+    background-color: rgba(var(--v-theme-primary), 0.1);
 }
 
 .sidebar-item__icon {
@@ -119,7 +119,7 @@ function handleClick(): void {
 
 .sidebar-item--active .sidebar-item__title {
     font-weight: 600;
-    color: #0ba665;
+    color: rgb(var(--v-theme-primary));
 }
 
 .sidebar-item__chevron {

@@ -1,15 +1,15 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export type ThemeName = 'light' | 'dark' | 'ocean' | 'forest' | 'sunset' | 'lavender'
+export type ThemeName = 'light' | 'dark' | 'sakura' | 'midnight' | 'amber' | 'nebula'
 
 export const THEME_LIST: { key: ThemeName; icon: string; color: string; dark: boolean }[] = [
   { key: 'light', icon: 'mdi-white-balance-sunny', color: '#FFFFFF', dark: false },
   { key: 'dark', icon: 'mdi-weather-night', color: '#121212', dark: true },
-  { key: 'ocean', icon: 'mdi-waves', color: '#0A1929', dark: true },
-  { key: 'forest', icon: 'mdi-pine-tree', color: '#0B1A0B', dark: true },
-  { key: 'sunset', icon: 'mdi-weather-sunset', color: '#FFF8F0', dark: false },
-  { key: 'lavender', icon: 'mdi-flower-tulip', color: '#F5F0FF', dark: false },
+  { key: 'sakura', icon: 'mdi-flower-poppy', color: '#FFF0F5', dark: false },
+  { key: 'midnight', icon: 'mdi-weather-night', color: '#0D0D2B', dark: true },
+  { key: 'amber', icon: 'mdi-fire', color: '#FFF8E7', dark: false },
+  { key: 'nebula', icon: 'mdi-star-four-points', color: '#0B0B1A', dark: true },
 ]
 
 export const useUIStore = defineStore('ui', () => {
@@ -34,7 +34,7 @@ export const useUIStore = defineStore('ui', () => {
   }
 
   function toggleTheme(): void {
-    const isDark = ['dark', 'ocean', 'forest'].includes(theme.value)
+    const isDark = ['dark', 'midnight', 'nebula'].includes(theme.value)
     theme.value = isDark ? 'light' : 'dark'
     browser.storage.sync.set({ ThemeName: theme.value })
   }
@@ -68,7 +68,7 @@ export const useUIStore = defineStore('ui', () => {
         contextMenuDisabled.value = data.ContextMenu ?? false
         openInNewTab.value = data.BookmarkNewTab ?? false
         sidebarVisible.value = !(data.SideNavigationToggle ?? false)
-        if (data.ThemeName) {
+        if (data.ThemeName && THEME_LIST.some(t => t.key === data.ThemeName)) {
           theme.value = data.ThemeName as ThemeName
         }
         resolve()

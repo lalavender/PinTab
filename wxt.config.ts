@@ -10,7 +10,7 @@ export default defineConfig({
     name: "__MSG_appName__",
     description: "__MSG_appDesc__",
     default_locale: "zh_CN",
-    version: "0.0.3",
+    version: "0.0.5",
     permissions: ["storage", "bookmarks", "favicon"],
     icons: {
       16: "icons/icon-16.png",

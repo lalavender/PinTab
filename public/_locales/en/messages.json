@@ -158,17 +158,17 @@
   "theme_dark": {
     "message": "Dark"
   },
-  "theme_ocean": {
-    "message": "Ocean"
+  "theme_sakura": {
+    "message": "Sakura"
   },
-  "theme_forest": {
-    "message": "Forest"
+  "theme_midnight": {
+    "message": "Midnight"
   },
-  "theme_sunset": {
-    "message": "Sunset"
+  "theme_amber": {
+    "message": "Amber"
   },
-  "theme_lavender": {
-    "message": "Lavender"
+  "theme_nebula": {
+    "message": "Nebula"
   },
   "delFolder": {
     "message": "Delete Folder"
